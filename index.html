@@ -83,7 +83,8 @@ h1{font-size:clamp(56px,12vw,144px);line-height:.85;letter-spacing:-.04em;margin
 .marq{border-block:var(--bd) solid var(--fg);padding:28px 0;overflow:hidden}
 .marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 .track{display:flex;width:max-content;animation:scroll 45s linear infinite}
-.marquee:hover .track{animation-play-state:paused}
+@media (hover:hover){.marquee:hover .track{animation-play-state:paused}}
+.mqrow{display:flex;justify-content:flex-end;padding-top:16px}
 .set{display:flex;gap:20px;padding:0 20px 0 0;margin:0;list-style:none}
 .art{flex:none;height:240px;border:var(--bd) solid var(--fg);border-radius:var(--r);overflow:hidden}
 .art .img{height:100%;aspect-ratio:auto;border:0}
@@ -105,7 +106,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px 32px;flex-wrap:
 footer a:hover{color:var(--fg);text-decoration:underline}
 
 @media (max-width:860px){.grid3{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}.photo{max-width:360px}.hero::before{inset:0 0 0 20%;opacity:.5}}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.track{animation:none}.marquee{overflow-x:auto}.set[aria-hidden]{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.track{animation-play-state:paused}}
 </style>
 </head>
 <body>
@@ -150,7 +151,9 @@ footer a:hover{color:var(--fg);text-decoration:underline}
   <li class="art" style="width:240px"><div class="img d"></div></li>
   <li class="art" style="width:280px"><div class="img c"></div></li>
  </ul>
-</div></div></section>
+</div></div>
+<div class="wrap mqrow"><button class="btn two s" id="mq" type="button" aria-label="Pause artwork animation">Pause</button></div>
+</section>
 
 <!-- Sample content below: replace titles, roles, years and outcomes with your real projects -->
 <section class="sec" id="work"><div class="wrap">
@@ -192,6 +195,15 @@ document.getElementById("theme").addEventListener("click",function(){
  var r=document.documentElement,a=r.getAttribute("data-theme"),d=a==="dark"||(a!=="light"&&matchMedia("(prefers-color-scheme:dark)").matches);
  r.setAttribute("data-theme",d?"light":"dark");
 });
+var track=document.querySelector(".track"),mq=document.getElementById("mq"),reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+function setMarquee(paused){
+ track.style.animationPlayState=paused?"paused":(reduce?"running":"");
+ mq.textContent=paused?"Play":"Pause";
+ mq.setAttribute("aria-label",paused?"Play artwork animation":"Pause artwork animation");
+ mq.dataset.paused=paused;
+}
+setMarquee(reduce);
+mq.addEventListener("click",function(){setMarquee(mq.dataset.paused!=="true")});
 </script>
 </body>
 </html>
