@@ -65,7 +65,7 @@ h1{font-size:clamp(56px,12vw,144px);line-height:.85;letter-spacing:-.04em;margin
 .img.c{background:var(--fg);position:relative}.img.c::after{content:"";position:absolute;width:38%;aspect-ratio:1;border-radius:50%;background:var(--bg);left:31%;top:50%;transform:translateY(-50%)}
 
 /* Case study card */
-.card{display:block;border:var(--bd) solid var(--fg);border-radius:var(--r);overflow:hidden;background:var(--bg);transition:var(--t)}
+.card{display:block;border:var(--bd) solid var(--fg);border-radius:var(--r);overflow:hidden;background:var(--bg);transition:transform var(--t),box-shadow var(--t)}
 .card:hover,.card:focus-visible{transform:translate(-3px,-3px);box-shadow:var(--sh)}
 .card .txt{padding:20px 22px 26px}
 .meta{font-size:14px;line-height:21px;color:var(--muted);margin-bottom:8px}
@@ -104,6 +104,10 @@ h1{font-size:clamp(56px,12vw,144px);line-height:.85;letter-spacing:-.04em;margin
 footer{padding:28px 0;color:var(--muted);font-size:15px}
 footer .wrap{display:flex;justify-content:space-between;gap:12px 32px;flex-wrap:wrap}
 footer a:hover{color:var(--fg);text-decoration:underline}
+
+/* Scroll focus: only the section in view is fully visible (class added by JS, so no-JS visitors see everything) */
+.focus-on main>section{opacity:.25;transition:opacity .45s ease}
+.focus-on main>section.is-active,.focus-on main>section:focus-within{opacity:1}
 
 @media (max-width:860px){.grid3{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}.photo{max-width:360px}.hero::before{inset:0 0 0 20%;opacity:.5}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.track{animation-play-state:paused}}
@@ -204,6 +208,45 @@ function setMarquee(paused){
 }
 setMarquee(reduce);
 mq.addEventListener("click",function(){setMarquee(mq.dataset.paused!=="true")});
+
+/* Scroll focus: the section crossing the middle of the screen is active */
+var secs=[].slice.call(document.querySelectorAll("main>section")),queued=false;
+function focusSection(){
+ queued=false;
+ var mid=innerHeight*.5,cur=null;
+ secs.forEach(function(s){var r=s.getBoundingClientRect();if(r.top<=mid&&r.bottom>mid)cur=s});
+ if(innerHeight+scrollY>=document.documentElement.scrollHeight-4)cur=secs[secs.length-1];
+ if(!cur)return;
+ secs.forEach(function(s){s.classList.toggle("is-active",s===cur)});
+}
+function queueFocus(){if(!queued){queued=true;requestAnimationFrame(focusSection)}}
+document.documentElement.classList.add("focus-on");
+addEventListener("scroll",queueFocus,{passive:true});
+addEventListener("resize",queueFocus);
+focusSection();
+
+/* Very slight parallax: items rise a little faster than the page as you scroll down.
+   Uses the separate "translate" property, so card hover effects still work. Tweak the speeds (0.03 to 0.08) or the limits (14 and 26 px) to taste. */
+if(!matchMedia("(prefers-reduced-motion:reduce)").matches){
+ var items=[],pending=false;
+ function addItems(sel,speeds){document.querySelectorAll(sel).forEach(function(el,i){items.push({el:el,k:speeds[i%speeds.length],y:0})})}
+ addItems(".hero h1",[.08]);addItems(".hero .lede",[.05]);addItems(".hero .cta",[.03]);
+ addItems(".card",[.03,.05,.07]);addItems(".tile",[.03,.06,.04,.07]);
+ addItems(".photo",[.05]);addItems(".about>div",[.03]);addItems(".band h2",[.05]);
+ function parallax(){
+  pending=false;
+  var vh=innerHeight,lim=innerWidth<860?14:26;
+  var offs=items.map(function(o){var r=o.el.getBoundingClientRect();return r.top+r.height/2-o.y-vh/2});
+  items.forEach(function(o,i){
+   o.y=Math.max(-lim,Math.min(lim,offs[i]*o.k));
+   o.el.style.translate="0 "+o.y.toFixed(1)+"px";
+  });
+ }
+ function queueParallax(){if(!pending){pending=true;requestAnimationFrame(parallax)}}
+ addEventListener("scroll",queueParallax,{passive:true});
+ addEventListener("resize",queueParallax);
+ parallax();
+}
 </script>
 </body>
 </html>
