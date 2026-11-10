@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sandeep N Vijay – Portfolio Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink-950:#0B0B0B;--gray-900:#171717;--gray-600:#5A5A5A;--gray-400:#A8A8A8;--gray-300:#BEBEBE;--gray-100:#F1F1F1;--gray-50:#F4F4F4;--white:#FFFFFF;--red-500:#FF2A1F;
+ --bg:var(--white);--fg:var(--ink-950);--soft:var(--gray-100);--silver:var(--gray-300);--muted:var(--gray-600);--accent:var(--red-500);--line:var(--fg);--line-soft:var(--silver);--on-accent:var(--ink-950);--focus:var(--accent);--ok:var(--fg);--warn:var(--silver);--err:var(--accent);--display-xl:224px;--display-xl-lh:190px;--display-xl-ls:-9px;--display-l:56px;--display-l-lh:56px;--display-l-ls:-2px;
+ --f-d:"Syne",system-ui,sans-serif;--f-b:"Space Grotesk",system-ui,sans-serif;
+ --r:14px;--bd:2px;--sh:4px 4px 0 var(--fg);--t:150ms ease;
+ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:var(--ink-950);--fg:var(--gray-50);--soft:var(--gray-900);--silver:var(--gray-600);--muted:var(--gray-400)}}
+:root[data-theme="dark"]{--bg:var(--ink-950);--fg:var(--gray-50);--soft:var(--gray-900);--silver:var(--gray-600);--muted:var(--gray-400)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 1.0625rem/1.6 var(--f-b)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+h1,h2,h3{font-family:var(--f-d);font-weight:800;letter-spacing:-.02em;margin:0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.25rem 0;flex-wrap:wrap}
+.top nav{display:flex;gap:1.1rem;flex-wrap:wrap;font-weight:500}
+.hero{padding:2.5rem 0 3rem}
+.hero h1{font-size:clamp(56px,14vw,144px);line-height:.85;letter-spacing:-.04em}
+.hero p{max-width:46ch;font-size:1.25rem;font-weight:500;line-height:1.4;margin:1.25rem 0 0}
+.sec{padding:3rem 0;border-top:var(--bd) solid var(--fg)}
+.sec>.wrap>h2{font-size:clamp(1.8rem,5vw,2.8rem);margin-bottom:.5rem}
+.sec>.wrap>.lead{color:var(--muted);max-width:60ch;margin:0 0 2rem}
+h3{font-size:1.2rem;margin:2.2rem 0 .9rem}
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.stage{background:var(--soft);border-radius:var(--r);padding:1.5rem;display:flex;flex-wrap:wrap;gap:1rem;align-items:center}
+.note{color:var(--muted);font-size:.9rem;margin:.6rem 0 0}
+code{font:500 .85em ui-monospace,Menlo,monospace;background:var(--soft);padding:.1em .4em;border-radius:6px}
+/* swatches + type */
+.sw i{display:block;height:88px;border:var(--bd) solid var(--fg);border-radius:var(--r)}
+.sw b{display:block;margin-top:.5rem}.sw span{display:block;font-size:.85rem;color:var(--muted)}
+.ts{display:grid;grid-template-columns:150px 1fr;gap:.5rem 1.5rem;padding:1.1rem 0;border-bottom:var(--bd) solid var(--silver);align-items:baseline}
+.ts small{color:var(--muted);font-size:.85rem}
+.ts div{overflow-wrap:anywhere}
+.dot{display:inline-block;width:18px;height:18px;border:2px solid var(--fg);border-radius:50%;margin-right:.6rem;vertical-align:-3px}
+.tok{display:flex;align-items:center;gap:1rem;margin:.4rem 0}
+.tok i{display:block;background:var(--fg);height:14px}
+/* buttons */
+.btn{display:inline-block;font:700 1rem var(--f-b);background:var(--fg);color:var(--bg);border:var(--bd) solid var(--fg);border-radius:999px;padding:.75rem 1.5rem;text-decoration:none;cursor:pointer;transition:var(--t)}
+.btn:hover{background:var(--bg);color:var(--fg)}
+.btn.two{background:transparent;color:var(--fg)}.btn.two:hover{background:var(--fg);color:var(--bg)}
+.btn.acc{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}.btn.acc:hover{background:var(--bg);color:var(--fg);border-color:var(--fg)}
+.btn.lnk{background:none;border-color:transparent;color:var(--fg);text-decoration:underline;text-underline-offset:.25em;padding-inline:.5rem}
+.btn.s{padding:.4rem 1rem;font-size:.875rem}.btn.l{padding:1rem 2.2rem;font-size:1.2rem}
+.btn[disabled]{opacity:.4;cursor:not-allowed;pointer-events:none}
+.ib{width:44px;height:44px;padding:0;display:inline-grid;place-items:center;font-size:1.2rem}
+/* forms */
+.fld{display:grid;gap:.35rem;min-width:min(100%,260px);flex:1}
+.fld label{font-weight:700;font-size:.95rem}
+.fld small{color:var(--muted)}.fld.bad small{color:var(--fg);font-weight:700}
+.in{font:400 1rem var(--f-b);padding:.7rem 1rem;border:var(--bd) solid var(--fg);border-radius:12px;background:var(--bg);color:var(--fg);width:100%}
+.fld.bad .in{border-color:var(--accent);box-shadow:4px 4px 0 var(--accent)}
+textarea.in{min-height:90px;resize:vertical}
+.chk{display:inline-flex;gap:.6rem;align-items:center;cursor:pointer}
+.chk input{width:22px;height:22px;accent-color:var(--fg)}
+.tg input{position:absolute;opacity:0}
+.tg span{width:52px;height:30px;border:var(--bd) solid var(--fg);border-radius:999px;position:relative;transition:var(--t);flex:none}
+.tg span::after{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:var(--fg);transition:var(--t)}
+.tg input:checked+span{background:var(--fg)}.tg input:checked+span::after{left:25px;background:var(--bg)}
+.tg input:focus-visible+span{outline:3px solid var(--accent);outline-offset:3px}
+/* badges */
+.bd{display:inline-block;font-weight:700;font-size:.8rem;padding:.15rem .7rem;border:var(--bd) solid var(--fg);border-radius:999px}
+.bd.sol{background:var(--fg);color:var(--bg)}.bd.acc{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.bd.wrn{background:repeating-linear-gradient(45deg,var(--soft) 0 6px,var(--bg) 6px 12px)}
+/* cards */
+.card{background:var(--bg);border:var(--bd) solid var(--fg);border-radius:var(--r);padding:1.25rem;transition:var(--t)}
+.card:hover{transform:translate(-3px,-3px);box-shadow:var(--sh)}
+.card h4{font:800 1.3rem var(--f-d);margin:.6rem 0 .3rem;letter-spacing:-.02em}.card p{margin:0;color:var(--muted)}
+.tile{aspect-ratio:1;border:var(--bd) solid var(--fg);border-radius:var(--r);background:radial-gradient(circle,var(--fg) 3px,transparent 3.6px) 0 0/14px 14px,var(--soft)}
+.row{display:flex;justify-content:space-between;gap:1rem;padding:1rem 0;border-bottom:var(--bd) solid var(--fg);width:100%;align-items:baseline}
+.row b{font:800 1.3rem var(--f-d)}.row span{color:var(--muted)}
+/* nav */
+.tabs{display:flex;gap:.4rem;border-bottom:var(--bd) solid var(--fg);width:100%}
+.tabs button{font:700 1rem var(--f-b);background:none;border:var(--bd) solid transparent;border-bottom:0;border-radius:12px 12px 0 0;padding:.6rem 1.1rem;color:var(--fg);cursor:pointer;margin-bottom:-2px}
+.tabs button[aria-selected=true]{background:var(--fg);color:var(--bg)}
+.panel{width:100%;padding:.5rem 0}
+.crumb{display:flex;gap:.6rem;flex-wrap:wrap;width:100%}.crumb a{color:var(--muted)}.crumb b::before{content:"/";margin-right:.6rem;color:var(--silver)}
+.pg{display:flex;gap:.4rem}.pg a{display:grid;place-items:center;width:40px;height:40px;border:var(--bd) solid var(--fg);border-radius:10px;text-decoration:none;font-weight:700}
+.pg a[aria-current]{background:var(--fg);color:var(--bg)}
+.bar{display:flex;justify-content:space-between;align-items:center;width:100%;border:var(--bd) solid var(--fg);border-radius:999px;padding:.4rem .5rem .4rem 1.4rem;background:var(--bg)}
+.bar b{font:800 1.2rem var(--f-d)}.bar nav{display:flex;gap:1rem;align-items:center;font-weight:500}
+/* feedback */
+.al{width:100%;border:var(--bd) solid var(--fg);border-radius:12px;padding:.9rem 1.1rem;background:var(--bg)}
+.al b{display:block}.al.ok{background:var(--fg);color:var(--bg)}
+.al.wn{background:repeating-linear-gradient(45deg,var(--soft) 0 10px,var(--bg) 10px 20px)}
+.al.er{border-color:var(--accent);box-shadow:5px 5px 0 var(--accent)}
+.toast{background:var(--fg);color:var(--bg);border-radius:999px;padding:.7rem 1.4rem;font-weight:500}
+.pr{width:100%;height:18px;border:var(--bd) solid var(--fg);border-radius:999px;overflow:hidden}.pr i{display:block;height:100%;width:62%;background:var(--fg)}
+.tip{position:relative}.tip>span{position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:.35rem .8rem;border-radius:8px;font-size:.85rem;white-space:nowrap;opacity:0;pointer-events:none;transition:var(--t)}
+.tip:hover>span,.tip:focus-within>span{opacity:1}
+.modal{background:var(--bg);border:var(--bd) solid var(--fg);border-radius:20px;box-shadow:8px 8px 0 var(--fg);padding:1.5rem;max-width:420px;width:100%}
+.modal h4{font:800 1.5rem var(--f-d);margin:0 0 .4rem}.modal p{color:var(--muted);margin:0 0 1.2rem}.modal .acts{display:flex;gap:.6rem;justify-content:flex-end}
+/* data */
+.av{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;border:var(--bd) solid var(--fg);background:var(--soft);font-weight:700;margin-right:-10px}.av.sol{background:var(--fg);color:var(--bg)}
+table{border-collapse:collapse;width:100%}th,td{text-align:left;padding:.7rem .6rem;border-bottom:var(--bd) solid var(--fg)}th{font:800 .95rem var(--f-d)}
+details{width:100%;border:var(--bd) solid var(--fg);border-radius:12px;padding:.8rem 1.1rem}summary{font-weight:700;cursor:pointer}details p{margin:.6rem 0 0;color:var(--muted)}
+.flt{display:flex;gap:.5rem;flex-wrap:wrap;width:100%}.chip{font:700 .95rem var(--f-b);padding:.45rem 1.1rem;border:var(--bd) solid var(--fg);border-radius:999px;background:var(--bg);color:var(--fg);cursor:pointer;transition:var(--t)}.chip:hover{box-shadow:3px 3px 0 var(--fg)}.chip[aria-pressed=true]{background:var(--fg);color:var(--bg)}.img{aspect-ratio:16/10;border-bottom:var(--bd) solid var(--fg);background:radial-gradient(circle,var(--fg) 2.4px,transparent 3px) 0 0/16px 16px,var(--soft)}.img.b{background:repeating-linear-gradient(45deg,var(--fg) 0 8px,var(--bg) 8px 16px)}.img.c{background:var(--fg)}.cs{display:block;text-decoration:none;border:var(--bd) solid var(--fg);border-radius:var(--r);overflow:hidden;background:var(--bg);transition:var(--t)}.cs:hover,.cs:focus-visible{transform:translate(-3px,-3px);box-shadow:var(--sh)}.cs .txt{padding:1.1rem 1.25rem 1.3rem}.cs h4{font:800 1.5rem/1.1 var(--f-d);margin:.6rem 0 .4rem;letter-spacing:-.02em}.cs p{margin:0;color:var(--muted)}.meta{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;font-size:.85rem;color:var(--muted)}.ct{position:relative;aspect-ratio:1;display:block;border:var(--bd) solid var(--fg);border-radius:var(--r);overflow:hidden;text-decoration:none}.ct .img{position:absolute;inset:0;aspect-ratio:auto;border:0}.ct .cap{position:absolute;inset:auto 0 0 0;padding:.7rem 1rem;background:var(--fg);color:var(--bg);font-weight:700;transform:translateY(101%);transition:var(--t)}.ct:hover .cap,.ct:focus-visible .cap{transform:none}.cat{display:block;text-decoration:none;border:var(--bd) solid var(--fg);border-radius:var(--r);padding:1.25rem;transition:var(--t)}.cat b{display:block;font:800 1.3rem var(--f-d)}.cat span{color:var(--muted)}.cat:hover{background:var(--fg);color:var(--bg)}.cat:hover span{color:var(--bg)}.tpl{width:100%;border:var(--bd) solid var(--fg);border-radius:var(--r);overflow:hidden;background:var(--bg)}.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem;padding:1.25rem 1.5rem;border-bottom:var(--bd) solid var(--fg)}.facts b{display:block;font-size:.85rem;color:var(--muted);font-weight:500}.tpl .in2{padding:1.5rem}.tpl h4{font:800 1.6rem/1.1 var(--f-d);margin:0 0 .5rem}.tpl p{margin:0;color:var(--muted);max-width:60ch}.sp2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.2rem}.sp2 .img{aspect-ratio:4/3;border:var(--bd) solid var(--fg);border-radius:12px}.lb{width:100%;max-width:560px;border:var(--bd) solid var(--fg);border-radius:20px;box-shadow:8px 8px 0 var(--fg);overflow:hidden;background:var(--bg)}.lb .img{aspect-ratio:4/3}.lb .bar2{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.8rem 1rem}.foot{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;width:100%;align-items:baseline}@media (max-width:640px){.ts,.sp2{grid-template-columns:1fr}.bar nav a.h{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="top"><b style="font:800 1.25rem var(--f-d)">Sandeep N Vijay</b>
+<nav><a href="#arch">Tokens</a><a href="#color">Color</a><a href="#type">Type</a><a href="#tokens">Foundations</a><a href="#comp">Components</a><a href="#port">Portfolio</a><button class="btn s two" id="theme" type="button">Toggle dark</button></nav></div></div>
+
+<section class="hero"><div class="wrap"><h1>Portfolio system</h1>
+<p>Sandeep N Vijay, Product &amp; Visual Designer. A monochrome interface, so the work supplies the color.</p></div></section>
+
+<section class="sec" id="principles"><div class="wrap"><h2>Principles</h2>
+<div class="grid" style="margin-top:1.5rem">
+<div class="card"><h4>Contrast is the color</h4><p>Hierarchy comes from ink against paper. Project images are the only color on the page.</p></div>
+<div class="card"><h4>Red is rare</h4><p>The accent marks errors, one key action or a single highlight. Never a fill for large areas.</p></div>
+<div class="card"><h4>Hard edges, round corners</h4><p>Thick outlines and hard shadows, softened by pill and 14px radii.</p></div>
+<div class="card"><h4>Shape beats color</h4><p>States use fill, stripes and icons so meaning survives without color.</p></div></div></div></section>
+
+<section class="sec" id="arch"><div class="wrap"><h2>Token architecture</h2><p class="lead">A token is a named design decision stored as a variable, such as a color or a spacing step. This system uses three tiers, and each tier only points to the one below it.</p><div class="grid"><div class="card"><span class="bd">Tier 1</span><h4>Primitive tokens</h4><p>Raw values with no meaning attached, named by what they are, like <code>--gray-600: #5A5A5A</code>. They are the palette and scale to pick from. Components never use them directly.</p></div><div class="card"><span class="bd sol">Tier 2</span><h4>Semantic tokens</h4><p>Named by purpose and aliased to a primitive. <code>--muted</code> means secondary text and points to <code>--gray-600</code> in light and <code>--gray-400</code> in dark. Components use these.</p></div><div class="card"><span class="bd">Tier 3</span><h4>Component tokens</h4><p>Optional and specific to one component, like <code>--btn-bg: var(--fg)</code>. Use them when a component needs its own override without changing the shared meaning.</p></div></div><h3>The chain</h3><div class="stage"><code style="display:block;white-space:pre-wrap;background:none;font-size:.9rem;line-height:1.8">primitive   --gray-600: #5A5A5A;
+semantic    --muted: var(--gray-600);   /* dark: var(--gray-400) */
+component   .card p { color: var(--muted); }</code></div><h3>Primitive tokens in this system</h3><div class="grid" id="prim"></div><h3>Semantic tokens and what they point to</h3><div class="stage"><div style="overflow-x:auto;width:100%"><table><thead><tr><th>Semantic token</th><th>Role</th><th>Light</th><th>Dark</th></tr></thead><tbody><tr><td><code>--fg</code></td><td>Text, borders, primary fill</td><td>ink-950</td><td>gray-50</td></tr><tr><td><code>--bg</code></td><td>Page background</td><td>white</td><td>ink-950</td></tr><tr><td><code>--soft</code></td><td>Quiet surfaces</td><td>gray-100</td><td>gray-900</td></tr><tr><td><code>--silver</code></td><td>Dividers, disabled</td><td>gray-300</td><td>gray-600</td></tr><tr><td><code>--muted</code></td><td>Secondary text</td><td>gray-600</td><td>gray-400</td></tr><tr><td><code>--accent</code></td><td>Errors, one key action</td><td>red-500</td><td>red-500</td></tr></tbody></table></div></div><p class="note">Spacing steps (<code>s1</code> to <code>s9</code>) are primitives. Radius, border and shadow (<code>--r</code>, <code>--bd</code>, <code>--sh</code>) are semantic because they describe use, not a raw size.</p><h3>Rules</h3><div class="grid"><div class="card"><h4>Use semantic only</h4><p>Components reference <code>--fg</code> or <code>--muted</code>, never a hex value or a primitive.</p></div><div class="card"><h4>Dark mode remaps</h4><p>Switch themes by pointing semantic tokens at different primitives. No component changes.</p></div><div class="card"><h4>Rebrand at the base</h4><p>Change a primitive and everything that depends on it updates.</p></div><div class="card"><h4>Name by purpose</h4><p><code>--muted</code> survives a redesign. <code>--light-grey</code> does not.</p></div></div></div></section>
+<section class="sec" id="color"><div class="wrap"><h2>Color</h2>
+<p class="lead">Six tokens, two themes. Components reference tokens only, never raw hex values.</p>
+<div class="grid" id="sw"></div>
+<h3>Color token reference</h3><div class="stage"><div style="overflow-x:auto;width:100%"><table><thead><tr><th>Token</th><th>Use</th><th>Light</th><th>Dark</th></tr></thead><tbody><tr><td><i class="dot" style="background:var(--fg)"></i><code>--fg</code></td><td>Text and primary fill</td><td>#0B0B0B</td><td>#F4F4F4</td></tr><tr><td><i class="dot" style="background:var(--bg)"></i><code>--bg</code></td><td>Page background</td><td>#FFFFFF</td><td>#0B0B0B</td></tr><tr><td><i class="dot" style="background:var(--soft)"></i><code>--soft</code></td><td>Quiet surfaces</td><td>#F1F1F1</td><td>#171717</td></tr><tr><td><i class="dot" style="background:var(--muted)"></i><code>--muted</code></td><td>Secondary text</td><td>#5A5A5A</td><td>#A8A8A8</td></tr><tr><td><i class="dot" style="background:var(--silver)"></i><code>--silver</code></td><td>Disabled, subtle fills</td><td>#BEBEBE</td><td>#5A5A5A</td></tr><tr><td><i class="dot" style="background:var(--line)"></i><code>--line</code></td><td>Default borders and outlines</td><td>#0B0B0B</td><td>#F4F4F4</td></tr><tr><td><i class="dot" style="background:var(--line-soft)"></i><code>--line-soft</code></td><td>Dividers</td><td>#BEBEBE</td><td>#5A5A5A</td></tr><tr><td><i class="dot" style="background:var(--accent)"></i><code>--accent</code></td><td>Highlight, errors, one key action</td><td>#FF2A1F</td><td>#FF2A1F</td></tr><tr><td><i class="dot" style="background:var(--on-accent)"></i><code>--on-accent</code></td><td>Text on accent fills</td><td>#0B0B0B</td><td>#0B0B0B</td></tr><tr><td><i class="dot" style="background:var(--focus)"></i><code>--focus</code></td><td>Keyboard focus ring</td><td>#FF2A1F</td><td>#FF2A1F</td></tr><tr><td><i class="dot" style="background:var(--ok)"></i><code>--ok</code></td><td>Success, solid fill with a check</td><td>#0B0B0B</td><td>#F4F4F4</td></tr><tr><td><i class="dot" style="background:var(--warn)"></i><code>--warn</code></td><td>Warning, striped fill</td><td>#BEBEBE</td><td>#5A5A5A</td></tr><tr><td><i class="dot" style="background:var(--err)"></i><code>--err</code></td><td>Error, red border and hard shadow</td><td>#FF2A1F</td><td>#FF2A1F</td></tr></tbody></table></div></div><p class="note">Status never relies on color alone: success is solid, warning is striped, and errors add a red shadow and an icon.</p><h3>Accessible pairings</h3><div class="stage"><div style="overflow-x:auto;width:100%"><table><thead><tr><th>Pair</th><th>Light</th><th>Dark</th><th>Use</th></tr></thead><tbody><tr><td><code>fg</code> on <code>bg</code></td><td>19.3:1</td><td>17.9:1</td><td>All text</td></tr><tr><td><code>muted</code> on <code>bg</code></td><td>6.9:1</td><td>8.3:1</td><td>Secondary text</td></tr><tr><td><code>on-accent</code> on <code>accent</code></td><td>5.3:1</td><td>5.3:1</td><td>Text on red fills</td></tr><tr><td><code>accent</code> on <code>bg</code></td><td>3.7:1</td><td>5.3:1</td><td>Borders and shadows in light. Text only in dark.</td></tr></tbody></table></div></div></div></section>
+
+<section class="sec" id="type"><div class="wrap"><h2>Typography</h2>
+<p class="lead">Syne is the display voice, with wide, heavy and tightly tracked headlines. Space Grotesk handles everything you read. Sentence case throughout.</p>
+<div class="grid" style="margin-bottom:1.5rem">
+<div class="card"><div style="font:800 3rem/1 var(--f-d)">Aa</div><h4>Syne 600 / 800</h4><p>Display, headings, wordmark, numerals.</p></div>
+<div class="card"><div style="font:500 3rem/1 var(--f-b)">Aa</div><h4>Space Grotesk 400 / 500 / 700</h4><p>Body, UI labels, buttons, forms.</p></div></div>
+<div id="ts"></div>
+<h3>Type values in pixels</h3><div class="stage"><div style="overflow-x:auto;width:100%"><table><thead><tr><th>Style</th><th>Family</th><th>Weight</th><th>Size</th><th>Line height</th><th>Tracking</th></tr></thead><tbody><tr><td>Display XL</td><td>Syne</td><td>800</td><td>224px</td><td>190px</td><td>−9px (−4%)</td></tr><tr><td>Display L</td><td>Syne</td><td>800</td><td>56px</td><td>56px</td><td>−2px</td></tr><tr><td>Heading 1</td><td>Syne</td><td>800</td><td>40px</td><td>44px</td><td>−1px</td></tr><tr><td>Heading 2</td><td>Syne</td><td>800</td><td>32px</td><td>36px</td><td>−1px</td></tr><tr><td>Heading 3</td><td>Syne</td><td>800</td><td>24px</td><td>28px</td><td>0</td></tr><tr><td>Body L</td><td>Space Grotesk</td><td>500</td><td>20px</td><td>28px</td><td>0</td></tr><tr><td>Body</td><td>Space Grotesk</td><td>400</td><td>17px</td><td>27px</td><td>0</td></tr><tr><td>Small</td><td>Space Grotesk</td><td>400</td><td>14px</td><td>21px</td><td>0</td></tr><tr><td>Button</td><td>Space Grotesk</td><td>700</td><td>16px</td><td>24px</td><td>0</td></tr></tbody></table></div></div><p class="note">Base size is 16px, so 1rem = 16px. Divide a pixel value by 16 to get rem.</p><h3>Figma specs: Display XL</h3><p class="note" style="margin:0 0 .8rem">Display XL is one fixed text style. Use Syne ExtraBold, line height in px and letter spacing in %.</p><div class="stage"><div style="overflow-x:auto;width:100%"><table><thead><tr><th>Property</th><th>Value</th></tr></thead><tbody><tr><td>Font</td><td>Syne ExtraBold (800)</td></tr><tr><td>Size</td><td>224px</td></tr><tr><td>Line height</td><td>190px</td></tr><tr><td>Letter spacing</td><td>−4% (−9px)</td></tr></tbody></table></div></div><p class="note">One fixed size for every frame. Display XL suits short words, since Syne is wide: at 224px about four to five letters fit across a 1440px frame.</p><h3>Display tokens in CSS</h3><div class="stage"><code style="display:block;white-space:pre-wrap;background:none;font-size:.9rem;line-height:1.8">--display-xl:    224px;
+--display-xl-lh: 190px;
+--display-xl-ls: -9px;
+--display-l:     56px;
+--display-l-lh:  56px;
+--display-l-ls:  -2px;</code></div><p class="note">The Display XL and Display L specimens above use these tokens directly. The page hero is a longer title, so it uses its own smaller size.</p><h3>Figma specs: all styles</h3><div class="stage"><div style="overflow-x:auto;width:100%"><table><thead><tr><th>Style</th><th>Font and style</th><th>Size</th><th>Line height</th><th>Letter spacing</th></tr></thead><tbody><tr><td>Display XL</td><td>Syne ExtraBold</td><td>224px</td><td>190px</td><td>−4%</td></tr><tr><td>Display L</td><td>Syne ExtraBold</td><td>56px</td><td>56px</td><td>−3.6% (−2px)</td></tr><tr><td>Heading 1</td><td>Syne ExtraBold</td><td>40px</td><td>44px</td><td>−2.5% (−1px)</td></tr><tr><td>Heading 2</td><td>Syne ExtraBold</td><td>32px</td><td>36px</td><td>−3.1% (−1px)</td></tr><tr><td>Heading 3</td><td>Syne ExtraBold</td><td>24px</td><td>28px</td><td>0%</td></tr><tr><td>Body L</td><td>Space Grotesk Medium</td><td>20px</td><td>28px</td><td>0%</td></tr><tr><td>Body</td><td>Space Grotesk Regular</td><td>17px</td><td>27px</td><td>0%</td></tr><tr><td>Small</td><td>Space Grotesk Regular</td><td>14px</td><td>21px</td><td>0%</td></tr><tr><td>Button</td><td>Space Grotesk Bold</td><td>16px</td><td>24px</td><td>0%</td></tr></tbody></table></div></div><p class="note">Both families are free on Google Fonts. Line heights are rounded to whole pixels so they match Figma exactly.</p><p class="note">Keep body line length under 70 characters. Headlines use negative tracking; body text never does.</p></div></section>
+
+<section class="sec" id="tokens"><div class="wrap"><h2>Foundations</h2>
+<h3>Spacing (4px base)</h3><div id="sp"></div>
+<h3>Shape, borders and elevation</h3>
+<div class="grid">
+<div class="card"><b>Radius</b><p><code>--r</code> 14px for cards and tiles, 12px for inputs, 999px for buttons and badges.</p></div>
+<div class="card"><b>Border</b><p><code>--bd</code> 2px solid <code>fg</code> on every interactive or containing element.</p></div>
+<div class="card"><b>Elevation</b><p>No blur. Hard offset shadow <code>4px 4px 0</code> in ink; accent shadow for errors.</p></div>
+<div class="card"><b>Motion</b><p>150ms ease for hover and state. Respect reduced motion.</p></div></div></div></section>
+
+<section class="sec" id="comp"><div class="wrap"><h2>Components</h2>
+<h3>Buttons</h3>
+<div class="stage"><button class="btn">Primary</button><button class="btn two">Secondary</button><button class="btn acc">Accent</button><button class="btn lnk">Text link</button><button class="btn" disabled>Disabled</button><button class="btn s">Small</button><button class="btn l">Large</button><button class="btn ib" aria-label="Add">+</button></div>
+<p class="note">One primary button per view. Accent is reserved for the single most important action on a page.</p>
+
+<h3>Form controls</h3>
+<div class="stage">
+<div class="fld"><label for="a1">Name</label><input class="in" id="a1" placeholder="Your name"><small>Used only to reply to you.</small></div>
+<div class="fld bad"><label for="a2">Email</label><input class="in" id="a2" value="you@studio" aria-invalid="true"><small>Enter a complete email address.</small></div>
+<div class="fld"><label for="a3">Reason</label><select class="in" id="a3"><option>Project inquiry</option><option>Collaboration</option><option>Just saying hi</option></select></div>
+<div class="fld"><label for="a4">Message</label><textarea class="in" id="a4" placeholder="Tell me about your project"></textarea></div>
+<label class="chk"><input type="checkbox" checked> Send me a copy</label>
+<label class="chk"><input type="radio" name="r" checked> Email</label><label class="chk"><input type="radio" name="r"> Call</label>
+<label class="chk tg"><input type="checkbox" checked><span></span> Available for work</label></div>
+
+<h3>Badges and status</h3>
+<div class="stage"><span class="bd">Neutral</span><span class="bd sol">Solid</span><span class="bd acc">Accent</span><span class="bd sol">✓ Published</span><span class="bd wrn">▲ Pending</span><span class="bd acc">✕ Failed</span></div>
+
+<h3>Cards, tiles and list rows</h3>
+<div class="grid"><div class="card"><span class="bd sol">Card</span><h4>Basic card</h4><p>Container for short content.</p></div>
+<div class="card"><span class="bd">Card</span><h4>Hover lift</h4><p>Hard shadow on hover.</p></div>
+<div class="tile" role="img" aria-label="Halftone tile"></div></div>
+<div class="stage" style="margin-top:1rem"><div class="row"><b>Resume</b><span>Downloadable CV</span></div><div class="row"><b>Contact</b><span>Email &amp; social links</span></div></div>
+
+<h3>Navigation</h3>
+<div class="stage">
+<div class="bar"><b>Sandeep</b><nav><a class="h" href="#comp">Work</a><a class="h" href="#comp">About</a><a class="btn s" href="#comp">Contact</a></nav></div>
+<div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-p="p1">All</button><button role="tab" aria-selected="false" data-p="p2">UI/UX</button><button role="tab" aria-selected="false" data-p="p3">Creative</button></div>
+<div class="panel" id="p1">Every project, newest first.</div><div class="panel" id="p2" hidden>Case studies with process and outcomes.</div><div class="panel" id="p3" hidden>Brand, art, posters, motion and more.</div>
+<div class="crumb"><a href="#comp">Home</a><b><a href="#comp">UI/UX Projects</a></b><b>Case study</b></div>
+<nav class="pg" aria-label="Pagination"><a href="#comp">‹</a><a href="#comp" aria-current="page">1</a><a href="#comp">2</a><a href="#comp">3</a><a href="#comp">›</a></nav></div>
+
+<h3>Feedback</h3>
+<div class="stage">
+<div class="al"><b>Heads up</b>My CV was updated this week.</div>
+<div class="al ok"><b>✓ Sent</b>Your message is on its way.</div>
+<div class="al wn"><b>▲ Booking up</b>Taking new projects from January.</div>
+<div class="al er"><b>✕ Upload failed</b>The file is over 20 MB. Compress it and try again.</div>
+<div class="toast">Message sent. I’ll reply within two days.</div>
+<div class="pr" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" aria-label="Upload"><i></i></div>
+<span class="tip"><button class="btn s two" type="button">Hover or focus me</button><span role="tooltip">Opens the full case study</span></span></div>
+
+<h3>Overlay</h3>
+<div class="stage"><div class="modal"><h4>Download my CV?</h4><p>A two-page PDF with experience and skills.</p><div class="acts"><button class="btn s two">Not now</button><button class="btn s acc">Download</button></div></div></div>
+
+<h3>Data display</h3>
+<div class="stage"><div style="width:100%;padding-left:10px"><span class="av sol">SV</span><span class="av">A</span><span class="av">B</span><span class="av">+3</span></div>
+<table><thead><tr><th>Project</th><th>Year</th><th>Status</th></tr></thead><tbody><tr><td>Case study title</td><td>2026</td><td><span class="bd sol">✓ Live</span></td></tr><tr><td>Brand identity</td><td>2026</td><td><span class="bd wrn">▲ In progress</span></td></tr></tbody></table>
+<details><summary>What’s your design process?</summary><p>Research, define, design, test and ship, documented in each case study.</p></details></div>
+</div></section>
+<section class="sec" id="port"><div class="wrap"><h2>Portfolio components</h2><p class="lead">Built for listing projects by category. Patterns stand in for your real images.</p><h3>Wordmark</h3><div class="stage"><div><div style="font:800 clamp(2rem,7vw,3.2rem)/1 var(--f-d);letter-spacing:-.04em">Sandeep N Vijay</div><p class="note">Product &amp; Visual Designer</p></div></div><h3>Section cards</h3><div class="grid"><a class="cat" href="#port"><b>Home</b><span>Introduction &amp; highlights</span></a><a class="cat" href="#port"><b>UI/UX Projects</b><span>Detailed case studies</span></a><a class="cat" href="#port"><b>Creative Works</b><span>Visual design collection</span></a><a class="cat" href="#port"><b>About</b><span>Story, skills &amp; experience</span></a><a class="cat" href="#port"><b>Resume</b><span>Downloadable CV</span></a><a class="cat" href="#port"><b>Contact</b><span>Email &amp; social links</span></a></div><p class="note">Pair with outline icons at 24px and a 2px stroke.</p><h3>Category filter</h3><div class="stage"><div class="flt" role="group" aria-label="Filter projects"><button class="chip" aria-pressed="true">All</button><button class="chip" aria-pressed="false">Brand Identity</button><button class="chip" aria-pressed="false">Social Media Creatives</button><button class="chip" aria-pressed="false">Digital Artwork</button><button class="chip" aria-pressed="false">Posters &amp; Campaigns</button><button class="chip" aria-pressed="false">Motion &amp; Video</button><button class="chip" aria-pressed="false">Other Explorations</button></div></div><h3>Case study card (UI/UX Projects)</h3><div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))"><a class="cs" href="#port"><div class="img"></div><div class="txt"><div class="meta"><span class="bd sol">UI/UX</span><span>Product designer</span><span>2026</span></div><h4>Project title</h4><p>One line on the problem and the result.</p></div></a><a class="cs" href="#port"><div class="img b"></div><div class="txt"><div class="meta"><span class="bd sol">UI/UX</span><span>Lead designer</span><span>2025</span></div><h4>Another project</h4><p>One line on the problem and the result.</p></div></a></div><h3>Creative tile (Creative Works)</h3><div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr))"><a class="ct" href="#port"><div class="img"></div><span class="cap">Brand Identity</span></a><a class="ct" href="#port"><div class="img b"></div><span class="cap">Posters &amp; Campaigns</span></a><a class="ct" href="#port"><div class="img c"></div><span class="cap">Motion &amp; Video</span></a><a class="ct" href="#port"><div class="img"></div><span class="cap">Digital Artwork</span></a></div><p class="note">Caption slides up on hover and keyboard focus.</p><h3>Case study page template</h3><div class="stage"><div class="tpl"><div class="img"></div><div class="facts"><div><b>Role</b>Product designer</div><div><b>Timeline</b>8 weeks</div><div><b>Tools</b>Figma</div><div><b>Outcome</b>Headline result</div></div><div class="in2"><h4>The problem</h4><p>Short context in plain language, kept under 70 characters a line.</p><div class="sp2"><div class="img b"></div><div class="img"></div></div></div></div></div><h3>Lightbox</h3><div class="stage"><div class="lb"><div class="img b"></div><div class="bar2"><span><b>Piece title</b><br><span class="note">Brand Identity, 2026</span></span><span><button class="btn s two" aria-label="Previous">‹</button> <button class="btn s two" aria-label="Next">›</button></span></div></div></div><h3>Resume and contact</h3><div class="stage"><a class="btn acc" href="#port">Download CV (PDF)</a><a class="btn two s" href="#port">Email</a><a class="btn two s" href="#port">LinkedIn</a><a class="btn two s" href="#port">Behance</a><a class="btn two s" href="#port">Instagram</a></div><h3>Footer</h3><div class="stage"><div class="foot"><b>Sandeep N Vijay</b><span class="note" style="margin:0">© 2026 Product &amp; Visual Designer</span></div></div></div></section><div class="wrap"><p class="note" style="padding-bottom:2rem">Built for Sandeep N Vijay’s portfolio. Swap in real projects and keep the tokens.</p></div>
+
+<script>
+var C=[["Ink","--fg","#0B0B0B","#F4F4F4","Text, borders, primary fill"],["Paper","--bg","#FFFFFF","#0B0B0B","Page background"],["Surface","--soft","#F1F1F1","#171717","Stages, tiles, quiet fills"],["Silver","--silver","#BEBEBE","#5A5A5A","Dividers, disabled"],["Muted","--muted","#5A5A5A","#A8A8A8","Secondary text"],["Red","--accent","#FF2A1F","#FF2A1F","Offset shadow, errors, one CTA"]];
+document.getElementById("sw").innerHTML=C.map(function(c){return '<div class="sw"><i style="background:var('+c[1]+')"></i><b>'+c[0]+' <code>'+c[1]+'</code></b><span>Light '+c[2]+' · Dark '+c[3]+'</span><span>'+c[4]+'</span></div>'}).join("");
+var T=[["Display XL","Syne 800 · 224px / 190px · −9px (−4%)","font:800 var(--display-xl)/var(--display-xl-lh) var(--f-d);letter-spacing:var(--display-xl-ls)","Work"],["Display L","Syne 800 · 56px / 56px · −2px","font:800 var(--display-l)/var(--display-l-lh) var(--f-d);letter-spacing:var(--display-l-ls)","Selected work"],["Heading 1","Syne 800 · 40px / 44px · −1px","font:800 40px/44px var(--f-d);letter-spacing:-1px","UI/UX Projects"],["Heading 2","Syne 800 · 32px / 36px · −1px","font:800 32px/36px var(--f-d);letter-spacing:-1px","Creative Works"],["Heading 3","Syne 800 · 24px / 28px","font:800 24px/28px var(--f-d)","About"],["Body L","Space Grotesk 500 · 20px / 28px","font:500 20px/28px var(--f-b)","I design products and brands that feel considered and look unmistakable."],["Body","Space Grotesk 400 · 17px / 27px","font:400 17px/27px var(--f-b)","Each case study covers the problem, the process and the outcome."],["Small","Space Grotesk 400 · 14px / 21px","font:400 14px/21px var(--f-b)","Used only to reply to you."],["Button","Space Grotesk 700 · 16px / 24px","font:700 16px/24px var(--f-b)","View case study"]];
+document.getElementById("ts").innerHTML=T.map(function(t){return '<div class="ts"><small><b style="color:var(--fg)">'+t[0]+'</b><br>'+t[1]+'</small><div style="'+t[2]+'">'+t[3]+'</div></div>'}).join("");
+document.getElementById("sp").innerHTML=[4,8,12,16,24,32,48,64,96].map(function(n,i){return '<div class="tok"><code>s'+(i+1)+'</code><i style="width:'+n+'px"></i>'+n+'px</div>'}).join("");
+document.getElementById("theme").addEventListener("click",function(){var r=document.documentElement,d=r.getAttribute("data-theme")==="dark"||(r.getAttribute("data-theme")!=="light"&&matchMedia("(prefers-color-scheme:dark)").matches);r.setAttribute("data-theme",d?"light":"dark")});
+document.querySelectorAll('[role=tab]').forEach(function(b){b.addEventListener("click",function(){document.querySelectorAll('[role=tab]').forEach(function(x){x.setAttribute("aria-selected",x===b)});["p1","p2","p3"].forEach(function(p){document.getElementById(p).hidden=p!==b.dataset.p})})});
+document.querySelectorAll('.chip').forEach(function(c){c.addEventListener("click",function(){document.querySelectorAll('.chip').forEach(function(x){x.setAttribute("aria-pressed",x===c)})})});
+var P=[["ink-950","#0B0B0B"],["gray-900","#171717"],["gray-600","#5A5A5A"],["gray-400","#A8A8A8"],["gray-300","#BEBEBE"],["gray-100","#F1F1F1"],["gray-50","#F4F4F4"],["white","#FFFFFF"],["red-500","#FF2A1F"]];document.getElementById("prim").innerHTML=P.map(function(p){return '<div class="sw"><i style="height:56px;background:var(--'+p[0]+')"></i><b><code>--'+p[0]+'</code></b><span>'+p[1]+'</span></div>'}).join("");
+</script>
+</body>
+</html>
